@@ -26,7 +26,7 @@ SECRET_KEY = 'z%p$8rqbz-n#@r^$-78w=_bgjbl@*vc5p$-d_fvyp!raw%q)(4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testing-dev.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['testing-dev.us-west-2.elasticbeanstalk.com','localhost']
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'challenge.apps.products'
+    'apps.products',
+    'coverage'
 ]
 
 APPNAME = 'Challenge'
@@ -90,8 +91,12 @@ if 'RDS_DB_NAME' in os.environ:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'prueba',
+            'USER': 'macbook_tb',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '5432',
         }
     }
 
