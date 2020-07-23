@@ -3,3 +3,4 @@ venv
 challenge/__pycache__
 .env
 static
+*.DS_Store
