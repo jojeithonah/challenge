@@ -12,25 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-import environ
-
-
-def getenvar(name):
-    
-    env = environ.Env()
-    env.read_env(env.str('ENV_PATH', '.env'))
-    """Get the environment variable or return exception."""
-    try:
-        val = env(name)
-        if val == 'True':
-            val = True
-        if val == 'False':
-            val = False
-
-        return val
-    except KeyError:
-        error_msg = 'Set the {} environment variable'.format(name)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,13 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenvar('SECRET_KEY')
+SECRET_KEY = 'z%p$8rqbz-n#@r^$-78w=_bgjbl@*vc5p$-d_fvyp!raw%q)(4'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenvar('DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS = [getenvar('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -60,7 +41,7 @@ INSTALLED_APPS = [
     'challenge.apps.products'
 ]
 
-APPNAME = getenvar('APPNAME')
+APPNAME = 'Challenge'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -95,16 +76,24 @@ WSGI_APPLICATION = 'challenge.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': getenvar('DB_HOST'),
-        'NAME': getenvar('DB_NAME'),
-        'USER': getenvar('DB_USER'),
-        'PASSWORD': getenvar('DB_PASSWORD'),
-        'PORT': getenvar('DB_PORT')
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

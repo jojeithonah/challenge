@@ -11,9 +11,6 @@ Challenge test
 * [Instalación](#instalacion)
     - [Instalación Local](#local)
 * [Crear una nueva app](#crear-una-nueva-app)
-* [Deploy AWS Lambda](#deploy-aws-lambda)
-* [Variables de entorno](#variables-de-entorno)
-* [Postman](#postman)
 * [Referencias](#referencias)
 
 ## Acerca
@@ -70,32 +67,24 @@ $ https://github.com/jojeithonah/challenge.git
 
 #### Interactivo
 ```
-# Asigna permisos al instalador
-$ chmod +x installer.sh
-
-# Inicia el instalador
-$ bash installer.sh
-```
-
-#### Manual
-
-```
 # Crea un entorno virtual
 $ virtualenv -p python3 venv
 
 # Activa el entorno
 $ source venv/bin/activate
 
-# Variables locales
-$ cp .env.sample .env
-
-# Modificar variables necesarias
-$ nano .env
-
 # Instala los requerimientos
 $ pip install -r requeriments.txt
-```
 
+# Migrar
+$ python manage.py migrate
+
+# Crear superuser
+$ python manage.py createsuperuser
+
+# Run server
+$ python manage.py runserver 0.0.0.0:8000
+```
 
 ## Deploy AWS Elastic Beanstalk en un entorno local
 #### Lambda Serverless (usando zappa)
@@ -103,36 +92,14 @@ $ pip install -r requeriments.txt
 
 ```
 
-
-## Variables de entorno
-```
-DEBUG=
-SECRET_KEY=
-APPNAME=
-DB_HOST=
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
-DB_PORT=5432
-
-```
-
 #### General
 ```
-# Ejecutar migraciones
-$ python manage.py migrate
-
-# Ejecutar proyecto
-$ python manage.py runserver
-
 # Ejecutar archivos estaticos
 $ python manage.py collectstatics
 ```
 
 ## Crear una nueva app dentro del proyecto
 ```
-# Ingresa
-$ cd project/apps
 
 # Crear una nueva aplicacion
 $ django-admin startapp myappname
