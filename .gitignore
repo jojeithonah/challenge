@@ -2,3 +2,4 @@ venv
 *.pyc
 challenge/__pycache__
 .env
+static
