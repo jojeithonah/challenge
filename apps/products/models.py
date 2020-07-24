@@ -24,6 +24,7 @@ class Product(models.Model):
         _("Discount Value"),
         null=True,
         blank=True,
+        default=0
         )
     stock = models.PositiveIntegerField(
         _("Stock")

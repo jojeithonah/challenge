@@ -107,6 +107,14 @@ $ django-admin startapp myappname
 
 ## Referencias
 
+## API`s
+#POST
+- curl -d '{"products": [{"id":"ID1","name":"product","value": 122,"discount_value":0,"stock":1},{"id":"123","name":"product","value":123,"discount_value":0,"stock":1}]}' -H "Content-Type: application/json" -X POST http://testing-dev.us-west-2.elasticbeanstalk.com/api/products/bulk_insert
+
+#GET
+- curl -H "Content-Type: application/json" -X GET http://testing-dev.us-west-2.elasticbeanstalk.com/api/products
+
+
 * [Python](https://www.python.org/doc/)
 * [Django](https://docs.djangoproject.com/en/3.0/)
 
