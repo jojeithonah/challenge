@@ -66,6 +66,16 @@ $ https://github.com/jojeithonah/challenge.git
 #### Maquina virtual o localhost
 > Las configuraciones pueden variar dependiendo del sistema operativo
 
+> Agregar los datos locales de postgresql local
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'prueba',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+
 #### Interactivo
 ```
 # Crea un entorno virtual

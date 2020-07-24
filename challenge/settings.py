@@ -93,7 +93,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'prueba',
-            'USER': 'macbook_tb',
+            'USER': '',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '5432',
