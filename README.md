@@ -10,7 +10,8 @@ Challenge test
 * [Estructura del Proyecto](#estructura-del-proyecto)
 * [Instalación](#instalacion)
     - [Instalación Local](#local)
-* [Crear una nueva app](#crear-una-nueva-app)
+* [Interactivo](#interactivo)
+* [Deploy AWS Elastic Beanstalk](deploy-aws-elastic-beanstalk)
 * [Referencias](#referencias)
 
 ## Acerca
@@ -86,9 +87,52 @@ $ python manage.py createsuperuser
 $ python manage.py runserver 0.0.0.0:8000
 ```
 
-## Deploy AWS Elastic Beanstalk en un entorno local
-#### Lambda Serverless (usando zappa)
+#### Deploy AWS Elastic Beanstalk
+#### (usando Elastic Beanstalk)
+
+#### (REUISITOS PREVIOS)
+
 ```
+# pip install awsebcli
+# AWS CLI
+# CREDENCIALES AWS (ID ACCESO, SECRET)
+
+$eb init 
+$ Select an application to use
+$ 1) clallenge
+$ 2) [ Create new Application ]
+$ (default is 2): 2
+$ Enter Application Name
+$ (default is "challenge-dev"): 
+$ Application my_eb_site has been created.
+$ It appears you are using Python. Is this correct?(y/n): y
+
+$Select a platform version.
+$ 1) Python 3.7
+$ 2) Python 3.6
+$ 4) Python 3.4 (Preconfigured - Docker)
+$ (default is 1): 2
+
+$ Do you want to set up SSH for your instances?
+$ (y/n): y
+
+$ Select a keypair.
+$ 1) aws-eb
+$ 2) [ Create new KeyPair ]
+$ (default is 2): 1
+
+$eb create --scale 1 -db -db.engine postgres -db.i db.t2.micro
+$ Select a load balancer type
+$ 1) classic
+$ 2) application
+$ (default is 1):
+
+$ Enter an RDS DB username (default is "ebroot"): 
+$ Enter an RDS DB master password: 
+$ Retype password to confirm:
+
+$ eb deploy
+
 
 ```
 
