@@ -9,3 +9,6 @@ static
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 htmlcov
+d.sqlite3
+.coverage
+.vscode
